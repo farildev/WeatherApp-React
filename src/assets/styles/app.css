@@ -1,0 +1,47 @@
+.App{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form__control{
+    margin-top: 20px;
+    width: 100%;
+}
+.form__control input{
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #232323;
+    background-color: #0f0f0f;
+    color: #fff;
+    font-family: inherit;
+    font-size: 16px;
+}
+.center__content{
+    margin-top: 20px;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.21);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.4px);
+    -webkit-backdrop-filter: blur(5.4px);
+    border: 1px solid rgba(0, 0, 0, 0.21);
+    display: flex;
+    justify-content: center;
+}
+.content{
+
+}
+.city__name h1{
+    color: #fff;
+    font-size: 24px;
+    font-weight: 500;
+}
+.city__degree span{
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+}
