@@ -73,5 +73,12 @@
     padding: 1.25rem;
 }
 .info-box p{
-    color: #fff;    
+    color: #fff; 
+    display: flex;
+    align-items: center;   
+}
+.info-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

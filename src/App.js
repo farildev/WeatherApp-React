@@ -1,11 +1,14 @@
 import React, {useState} from "react";
 import "./assets/styles/app.css"
 import axios from "axios";
+import { WiHumidity ,WiStrongWind } from "react-icons/wi";
+import {RiTempColdLine} from "react-icons/ri"
+import { TbTemperatureCelsius } from "react-icons/tb";
 
 function App() {
 
 const [data , setData] = useState({});
-const [location , setLocation] = useState('');
+const [location , setLocation] = useState('');  
 
 const key = `24083ecca407a115d248ab958204ab91`;
 const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${key}`;
@@ -27,6 +30,9 @@ const searchLocation = (e) => {
       </div>
       <div className="center__content container">
         <div className="content">
+        <div className="content__icon">
+            {data.weather ? <img src={data.weather[0].icon} alt={data.name} /> : false}
+          </div>
           <div className="city__name">
             <h1>{data.name}</h1>
           </div>
@@ -40,15 +46,15 @@ const searchLocation = (e) => {
       </div>
       <div className="bottom__content container">
         <div className="info-box">
-          <p className="text-info">Humidity</p>
+          <WiHumidity color="white" fontSize={30} />
           {data.main ? <p className="numeral-info">{data.main.humidity}%</p> : false}
         </div>
         <div className="info-box">
-            <p className="text-info">Feels Like</p>
-            {data.main ? <p className="numeral-info">{data.main.feels_like.toFixed()}</p> : false}
+            <RiTempColdLine color="white" fontSize={24}/>
+            {data.main ? <p className="numeral-info">{data.main.feels_like.toFixed()} <TbTemperatureCelsius fontSize={20}/></p> : false}
         </div>
         <div className="info-box">
-            <p className="text-info">Wind</p>
+            <WiStrongWind color="white" size={30} />
             {data.wind ? <p className="numeral-info">{data.wind.speed.toFixed()} m/s</p> : false}
         </div>
       </div>
