@@ -4,43 +4,63 @@ import axios from "axios";
 import { WiHumidity ,WiStrongWind } from "react-icons/wi";
 import {RiTempColdLine} from "react-icons/ri"
 import { TbTemperatureCelsius } from "react-icons/tb";
+import Loading from "./components/Loading";
 
 function App() {
 
 const [data , setData] = useState({});
 const [location , setLocation] = useState('');  
+const [loading , setLoading] = useState(false);
 
 const key = `24083ecca407a115d248ab958204ab91`;
 const API_URL = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${key}`;
 
 const searchLocation = (e) => {
   if(e.key === "Enter"){
+    setLoading(true)
     axios.get(API_URL)
     .then((res) => {
       setData(res.data)
-      console.log(res.data)
+      setLoading(false)
     })
     setLocation('');
   }
 }
   return (
     <div className="App">
+      {
+        loading ? <Loading /> : false
+      }
       <div className="form__control container">
         <input value={location} onChange={e => setLocation(e.target.value)} onKeyPress = {searchLocation} type="text" placeholder="Enter the city name"/>
       </div>
       <div className="center__content container">
         <div className="content">
-        <div className="content__icon">
+          <div className="content__icon">
             {data.weather ? <img src={data.weather[0].icon} alt={data.name} /> : false}
           </div>
-          <div className="city__name">
+          <div className="content__name">
             <h1>{data.name}</h1>
           </div>
-          <div className="city__temp">
-            {data.main ? <span>{data.main.temp.toFixed()} C</span> : false}
+          <div className="content__temp">
+            {data.main ? <span>{data.main.temp.toFixed()} <TbTemperatureCelsius fontSize={72}/> </span> : false}
           </div>
-          <div className="city__weather">
-            {data.weather ? <span>{data.weather.main}</span> : false}
+          <div className="content__weather">
+            {data.weather ? <span>{data.weather[0].main}</span> : false}
+          </div>
+          <div className="content__footer">
+            <div className="bottom content__max">
+              <h5>Max Temp</h5>
+                {data.main ? <span>{data.main.temp_max.toFixed()} <TbTemperatureCelsius fontSize={30}/></span> : false}
+            </div>
+            <div className="bottom content__min">
+              <h5>Min Temp</h5>
+            {data.main ? <span>{data.main.temp_min.toFixed()} <TbTemperatureCelsius fontWeight={700} fontSize={30}/></span> : false}
+            </div>
+            <div className="bottom content__pressure">
+              <h5>Pressure</h5>
+            {data.main ? <span>{data.main.pressure} kPa</span> : false}
+            </div>
           </div>
         </div>
       </div>
@@ -58,6 +78,7 @@ const searchLocation = (e) => {
             {data.wind ? <p className="numeral-info">{data.wind.speed.toFixed()} m/s</p> : false}
         </div>
       </div>
+      
     </div>
   );
 }
