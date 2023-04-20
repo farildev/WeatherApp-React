@@ -8,8 +8,8 @@
 }
 
 .form__control{
-    margin-top: 20px;
     width: 100%;
+    padding: 0 20px;
 }
 .form__control input{
     width: 100%;
@@ -22,6 +22,7 @@
     font-family: inherit;
     font-size: 16px;
 }
+
 .center__content{
     margin-top: 20px;
     padding: 2rem;
@@ -43,7 +44,7 @@
 }
 .content__name h1{
     color: #fff;
-    font-size: 30px;
+    font-size: 48px;
     font-weight: 500;
     text-align: center;
 }
@@ -55,9 +56,22 @@
     display: flex;
     align-items: center;
 }
-.content__weather span{
-    font-size: 48px;
-    font-weight: 700;
+.content__weather{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.content__weather .description{
+    color: #fff;
+    text-align: center;
+    margin-top: 5px;
+    font-size: 32px;
+    margin-left: 5px;
+    text-transform: capitalize;
+}
+.content__weather .title{
+    font-size: 32px;
+    font-weight: 500;
     color: #fff;
     text-align: center;
 }
@@ -99,10 +113,29 @@
 .info-box p{
     color: #fff; 
     display: flex;
+    font-size: 20px;
     align-items: center;   
 }
 .info-box{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media(max-width:480px){
+    .content__weather .description{
+        font-size: 24px;
+    }
+    .content__weather .title{
+        font-size: 24px;
+    }
+    .content__footer .bottom h5{
+        font-size: 14px;
+    }
+    .content__footer .bottom span{
+        font-size: 14px;
+    }
+    .info-box p{
+        font-size: 16px;
+    }
 }
